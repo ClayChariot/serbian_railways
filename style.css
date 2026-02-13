@@ -1,0 +1,174 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --text-main: #f2f2f2;
+    --text-secondary: #e6e6e6;
+}
+
+body {
+    position: relative;
+    font-family: "Montserrat", sans-serif;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        linear-gradient(90deg, #000000,
+            #00000040),
+        url("images/wallpaper.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    filter: blur(4px);
+}
+
+.layout {
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: 8rem 1fr;
+    grid-template-columns: 15rem 1fr;
+    grid-template-areas:
+        "header header"
+        "nav    main";
+}
+
+header {
+    grid-area: header;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    color: var(--text-main);
+}
+
+header h1 {
+    font-size: clamp(2.25rem, 1.5rem + 2.4vw, 4.5rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: 0.05em;
+    color: #f2f2f2;
+    text-shadow: 0 2px 6px #00000099;
+    transform: translateX(-200%);
+    animation: dropIn 2s ease-out forwards;
+
+}
+
+nav {
+    padding-top: 9rem;
+    padding-left: 2rem;
+    grid-area: nav;
+    display: flex;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    position: sticky;
+    top: 8rem;
+    align-self: start;
+    height: calc(100vh - 8rem);
+}
+
+
+.content.is-switching {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.navbar {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 3rem;
+}
+
+.navbar li {
+    opacity: 0;
+    transform: translate(-40px, -40px);
+    animation: dropIn 0.6s ease-out forwards;
+    animation-delay: calc(var(--i) * 0.3s);
+}
+
+.navbar li a {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.navbar li a:hover {
+    color: #6c5ce7;
+    text-shadow: 2px 0 6px #6c5ce799;
+}
+
+.navbar li.active a {
+    color: #ffffff;
+    text-shadow: 0 0 8px #ffffff66;
+}
+
+
+@keyframes dropIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content {
+    grid-area: main;
+    min-height: 100%;
+    color: var(--text-main);
+}
+
+main {
+    padding: 1rem;
+}
+
+.loco {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 5px;
+    aspect-ratio: 3/2;
+    object-fit: cover;
+    position: relative;
+}
+
+.loco-card:hover {}
+
+
+.locomotive-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 1rem;
+}
+
+.loco-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #e6e6e6;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    gap: 0.5rem;
+}
+
+.railway-network {
+    width: max(90%, 62rem);
+}
+
+.section-header {
+    font-size: clamp(0.8rem, 4.5vw, 1.5rem);
+    font-weight: 500;
+}
